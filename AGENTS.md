@@ -1,0 +1,63 @@
+# AGENTS.md
+
+Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
+
+## Response Protocol
+
+- If a task may take more than a few seconds, send a short acknowledgment before doing the work.
+- Read and follow this file before making changes.
+- For changes intended to be viewed externally, commit and push once complete unless the user asks not to.
+
+## Defaults
+
+- Prefer `rg` and `rg --files` for search.
+- Prefer small, direct edits over broad refactors.
+- Prefer Python for one-off scripts and automation tasks.
+- If Python dependencies are introduced, prefer `uv` for environment and package management.
+
+## Repo Workflow
+
+- Run commands from the repo root: `/Users/ecohen/Dev/byElie`.
+- Make small, clear commits with the prefix `byelie:`.
+- Default to keeping `main` pushable.
+- Use branches for larger changes; preferred branch prefix: `codex/`.
+- After modifying the site, update docs when needed.
+
+## Versioning
+
+- Use visible app versions in the form `vX.Y`.
+- `X` is the number of days since `2026-02-28`.
+- `Y` increments with each build/change on that same day.
+- Example: on `2026-04-18` (day 49), start at `v49.0`, then `v49.1`, `v49.2`, and so on.
+- Always bump `Y` for each new build on the same day.
+- Update the version badge in the topbar and the `version-pill` in the hero.
+- Also bump CSS cache-bust query strings (`?v=X.Y`) on `shared.css` and `styles.css` in every HTML file.
+
+## Workspace Structure
+
+- Repo root: `/Users/ecohen/Dev/byElie`
+- Pages: `index.html`, `plans.html`, `prints.html`, `gallery.html`, `cad-design.html`, `web-design.html`
+- Styles: `shared.css`, `styles.css`
+- Assets: `assets/`
+
+## Local Preview
+
+- Start a local server from the repo root: `python3 -m http.server 8000`
+- Home: `http://localhost:8000/`
+
+## Execution Discipline
+
+- Prefer deterministic tooling over manual repetition.
+- Before adding new scripts, check whether the repo already contains a file or workflow that solves the task.
+- If a task fails, read the full error, fix the cause, and retest.
+- Keep secrets out of source files.
+
+## Python Hygiene
+
+- Do not commit virtual environments such as `.venv/`.
+- Do not commit Python cache artifacts such as `__pycache__/` or `*.pyc`.
+
+## Safety
+
+- Do not delete or overwrite user files without explicit confirmation.
+- Do not rewrite Git history unless explicitly requested.
