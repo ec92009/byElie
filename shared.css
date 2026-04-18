@@ -1,14 +1,14 @@
 :root {
-  --bg:#060606;
-  --surface:#0d0d0d;
-  --surface-2:#121212;
-  --text:#eeeeee;
-  --muted:#909090;
-  --line:#1e1e1e;
-  --brand:#eeeeee;
-  --brand-2:#888888;
-  --accent:#1e1e1e;
-  --btn-primary-fg:#060606;
+  --bg:#0e0e0e;
+  --surface:#1c1c1c;
+  --surface-2:#252525;
+  --text:#f0f0f0;
+  --muted:#a8a8a8;
+  --line:#303030;
+  --brand:#f0f0f0;
+  --brand-2:#909090;
+  --accent:#252525;
+  --btn-primary-fg:#0e0e0e;
   --radius:0;
   --page-gutter:clamp(12px,2.1vw,28px);
   --panel-inline:clamp(16px,2.2vw,28px);
