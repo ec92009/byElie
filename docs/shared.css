@@ -61,7 +61,7 @@ html[data-theme="light"] .mode-dark { display: none; }
 html[data-theme="dark"] .mode-light { display: none; }
 .theme-toggle { font-weight: 700; width: 68px; text-align: center; }
 
-main{padding:clamp(12px,2dvh,18px) 0 clamp(30px,5dvh,42px);display:grid;gap:clamp(14px,2dvh,20px)}
+main{padding:clamp(4px,1dvh,10px) 0 clamp(30px,5dvh,42px);display:grid;gap:clamp(8px,1.4dvh,14px)}
 h1{margin:0;line-height:1.08;font-size:clamp(2rem,4vw,3.2rem);max-width:18ch}
 h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 .lead{margin:12px 0 0;color:var(--muted);max-width:68ch;line-height:1.58}
@@ -343,7 +343,14 @@ a:focus-visible,button:focus-visible{outline:2px solid color-mix(in srgb,var(--b
   font-size:clamp(2.4rem,6.5vw,5.4rem);
   letter-spacing:.01em;
 }
+.hero-home{
+  padding-top:clamp(6px,1.2dvh,12px);
+  padding-bottom:clamp(8px,1.6dvh,18px);
+}
 .hero .lead{max-width:62ch}
+.hero-home + .carousel{
+  padding-top:0;
+}
 
 .metrics-grid{
   display:grid;
