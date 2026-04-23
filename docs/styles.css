@@ -1,0 +1,35 @@
+body .hero{
+  background:var(--bg);
+}
+.hero-home h1{
+  font-size:clamp(1.8rem,4.875vw,4.05rem);
+}
+.hero-home .cta .btn{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;
+}
+.hero-home .cta .btn::before{
+  content:"";
+  position:absolute;
+  inset:-1px auto -1px -30%;
+  width:40%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+  transform:translateX(-170%) skewX(-18deg);
+  transition:transform .45s ease;
+  pointer-events:none;
+}
+.hero-home .cta .btn:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 14px 28px rgba(0,0,0,.16);
+}
+.hero-home .cta .btn:hover::before{
+  transform:translateX(420%) skewX(-18deg);
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-home .cta .btn::before{
+    display:none;
+  }
+}
+body .grid{grid-template-columns:repeat(2,minmax(0,1fr));}

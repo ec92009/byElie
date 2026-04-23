@@ -6,6 +6,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 
 - If a task may take more than a few seconds, send a short acknowledgment before doing the work.
 - Read and follow this file before making changes.
+- For "show me" requests, follow [`SHOW_ME_SOP.md`](./SHOW_ME_SOP.md).
 - For changes intended to be viewed externally, commit and push once complete unless the user asks not to.
 
 ## Defaults
@@ -37,6 +38,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 
 - Repo root: `/Users/ecohen/Dev/byElie`
 - Pages: `index.html`, `plans.html`, `prints.html`, `gallery.html`, `cad-design.html`, `web-design.html`
+- Viewer mirror for local/public previews: `docs/`
 - Styles: `shared.css`, `styles.css`
 - Assets: `assets/`
 
@@ -44,6 +46,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 
 - Start a local server from the repo root: `python3 -m http.server 8000`
 - Home: `http://localhost:8000/`
+- For "show me" flows, serve `docs/` and report the localhost URL, LAN URL, public GitHub Pages URL, and exact visible UI version called for by `SHOW_ME_SOP.md`.
 
 ## Execution Discipline
 
