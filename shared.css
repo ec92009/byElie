@@ -185,6 +185,8 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   cursor:pointer;
 }
 .carousel-companion .spaniel-figure{
+  position:absolute;
+  inset:0;
   display:block;
   width:100%;
   height:100%;
@@ -192,9 +194,29 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   object-fit:contain;
   object-position:left bottom;
   filter:drop-shadow(0 16px 14px rgba(40,24,10,.12));
+  transition:opacity .34s ease,transform .4s cubic-bezier(.22,.65,.2,1);
 }
 .carousel-companion .spaniel-figure *{
   vector-effect:non-scaling-stroke;
+}
+.carousel-companion .spaniel-figure.sleeping-pose{
+  opacity:0;
+  transform:translate(-8px,10px) scale(.86);
+}
+.carousel-companion .spaniel-figure.awake-pose{
+  opacity:1;
+  transform:translate(0,0) scale(1);
+}
+.carousel-companion[data-state="sleeping"] .spaniel-figure.awake-pose{
+  opacity:0;
+  transform:translate(14px,10px) scale(.9);
+}
+.carousel-companion[data-state="sleeping"] .spaniel-figure.sleeping-pose{
+  opacity:1;
+  transform:translate(0,0) scale(1);
+}
+.carousel-companion[data-state="sleeping"]{
+  width:clamp(96px,calc(var(--carousel-card-height,220px) * .72),210px);
 }
 .carousel-companion .spaniel-ear{
   transform-box:fill-box;
@@ -208,21 +230,24 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 }
 .carousel-companion .spaniel-z{
   position:absolute;
-  right:-2%;
-  top:6%;
+  right:4%;
+  top:2%;
   font-size:clamp(.86rem,1.8vw,1.12rem);
   font-weight:800;
   letter-spacing:.08em;
   color:color-mix(in srgb,var(--brand) 72%,white 28%);
   opacity:0;
+  transition:opacity .24s ease,transform .24s ease;
 }
 .carousel-companion[data-state="sleeping"][data-show-sleep-text="true"] .spaniel-z{
   opacity:1;
+  transform:translateY(0);
 }
 .carousel-companion[data-state="pulling"] .spaniel-z,
 .carousel-companion[data-state="dragging"] .spaniel-z,
 .carousel-companion[data-state="returning"] .spaniel-z{
   opacity:0;
+  transform:translateY(4px);
 }
 @keyframes spaniel-ear-flick{
   0%{transform:rotate(0deg)}
