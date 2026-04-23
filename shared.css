@@ -179,6 +179,8 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   width:100%;
   height:100%;
   overflow:visible;
+  object-fit:contain;
+  object-position:left bottom;
   filter:drop-shadow(0 16px 14px rgba(40,24,10,.12));
 }
 .carousel-companion .spaniel-z{
