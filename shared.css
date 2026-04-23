@@ -303,7 +303,12 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 .about-grid{display:grid;grid-template-columns:240px 1fr;gap:16px;align-items:start}
 .about-photo{width:100%;border-radius:0;border:1px solid var(--line);display:block;background:var(--surface-2)}
 .about-text p{margin:0 0 10px;color:var(--muted);line-height:1.55}
-.hero{position:relative;overflow:hidden;min-height:var(--hero-min-height);display:flex;flex-direction:column;justify-content:center}
+.hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start}
+.hero:not(.hero-home){
+  min-height:0;
+  padding-top:clamp(10px,1.8dvh,18px);
+  padding-bottom:clamp(14px,2.2dvh,24px);
+}
 .footer-note{font-size:.85rem;color:var(--muted);margin:0}
 .site-footer{
   border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent);
