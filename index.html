@@ -13,8 +13,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=54.7"/>
-  <link rel="stylesheet" href="./styles.css?v=54.7"/>
+  <link rel="stylesheet" href="./shared.css?v=54.8"/>
+  <link rel="stylesheet" href="./styles.css?v=54.8"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,12 +49,12 @@
       <a href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.7</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.8</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
     <section class="panel hero hero-home">
-      <p class="version-pill" aria-label="Current version">Version v54.7</p>
+      <p class="version-pill" aria-label="Current version">Version v54.8</p>
       <p class="eyebrow">Creator Portfolio</p>
       <h1>Creation and engineering at your service</h1>
       <p class="lead">I blend hands-on building, CAD thinking, and AI-assisted systems (including ClawdBot workflows) to ship visual assets people can buy, print, and trust.</p>
@@ -146,6 +146,7 @@
     const prevBtn=document.querySelector('[data-offers-prev]');
     const nextBtn=document.querySelector('[data-offers-next]');
     const spaniel=document.querySelector('[data-spaniel]');
+    const spanielSleepText=spaniel?.querySelector('.spaniel-z');
 
     if(offersWrap && offersTrack && offerItems.length){
       offersWrap.classList.add('is-enhanced');
@@ -244,15 +245,22 @@
         if(!spaniel) return;
         spaniel.dataset.state=state;
       };
+      const setSpanielSleepUi=({showText=false,canWake=false,text='Zzzz'}={})=>{
+        if(!spaniel) return;
+        spaniel.dataset.showSleepText=showText?'true':'false';
+        spaniel.dataset.canWake=canWake?'true':'false';
+        if(spanielSleepText) spanielSleepText.textContent=text;
+      };
       const setSpanielX=(value)=>{
         if(!spaniel) return;
         spaniel.style.setProperty('--companion-x',`${Math.round(value)}px`);
       };
-      const restSpaniel=()=>{
+      const restSpaniel=({showText=false,canWake=false}={})=>{
         clearCompanionTimeouts();
         companionAnimating=false;
         setSpanielX(0);
         setSpanielState('sleeping');
+        setSpanielSleepUi({showText,canWake});
       };
       const stopSpaniel=()=>{
         if(companionStopped) return;
@@ -261,7 +269,16 @@
           window.clearInterval(companionTimer);
           companionTimer=null;
         }
-        restSpaniel();
+        restSpaniel({showText:true,canWake:true});
+      };
+      const wakeSpaniel=()=>{
+        if(!spaniel || !companionStopped) return;
+        companionStopped=false;
+        setSpanielSleepUi({showText:false,canWake:false});
+        if(companionTimer===null && !motionQuery.matches){
+          companionTimer=window.setInterval(runSpanielCycle,5000);
+        }
+        runSpanielCycle();
       };
 
       const setActive=(i)=>{
@@ -312,6 +329,7 @@
         if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
         companionAnimating=true;
         setSpanielState('pulling');
+        setSpanielSleepUi({showText:false,canWake:false});
         setSpanielX(spanielPushX());
         queueCompanion(()=>{
           if(companionStopped) return;
@@ -323,6 +341,18 @@
           setSpanielState('sleeping');
         },1480);
       };
+      spaniel?.addEventListener('pointerdown',(e)=>{
+        if(!companionStopped) return;
+        e.preventDefault();
+        e.stopPropagation();
+        wakeSpaniel();
+      });
+      spaniel?.addEventListener('touchstart',(e)=>{
+        if(!companionStopped) return;
+        e.preventDefault();
+        e.stopPropagation();
+        wakeSpaniel();
+      },{passive:false});
       offersWrap.addEventListener('wheel',(e)=>{
         if(!carouselInView()) return;
         const mostlyHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY) * 1.35;
@@ -341,7 +371,7 @@
       let touchStartX=null;
       offersWrap.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0]?.clientX??null;},{passive:true});
       offersWrap.addEventListener('touchstart',(e)=>{
-        if(e.target.closest('[data-offer-item]')) stopSpaniel();
+        if(!e.target.closest('[data-spaniel]')) stopSpaniel();
       },{passive:true});
       offersWrap.addEventListener('touchend',(e)=>{
         if(touchStartX===null) return;
@@ -357,7 +387,7 @@
       let dragMoved=false;
       offersWrap.addEventListener('pointerdown',(e)=>{
         if(e.pointerType==='mouse' && e.button!==0) return;
-        if(e.target.closest('[data-offer-item]')) stopSpaniel();
+        if(!e.target.closest('[data-spaniel]')) stopSpaniel();
         pointerStartX=e.clientX;
         pointerDragging=true;
         dragMoved=false;
@@ -409,6 +439,7 @@
         resizeObserver.observe(offersWrap);
       }
       render();
+      setSpanielSleepUi({showText:false,canWake:false});
       if(spaniel && !motionQuery.matches){
         companionTimer=window.setInterval(runSpanielCycle,5000);
       } else {
