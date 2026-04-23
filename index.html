@@ -13,8 +13,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=54.2"/>
-  <link rel="stylesheet" href="./styles.css?v=54.2"/>
+  <link rel="stylesheet" href="./shared.css?v=54.3"/>
+  <link rel="stylesheet" href="./styles.css?v=54.3"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,12 +49,12 @@
       <a href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.2</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.3</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
     <section class="panel hero hero-home">
-      <p class="version-pill" aria-label="Current version">Version v54.2</p>
+      <p class="version-pill" aria-label="Current version">Version v54.3</p>
       <p class="eyebrow">Creator Portfolio</p>
       <h1>Creation and engineering at your service</h1>
       <p class="lead">I blend hands-on building, CAD thinking, and AI-assisted systems (including ClawdBot workflows) to ship visual assets people can buy, print, and trust.</p>
@@ -326,24 +326,20 @@
       const runSpanielCycle=()=>{
         if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
         companionAnimating=true;
-        setSpanielState('trotting');
+        setSpanielState('pulling');
         setSpanielX(spanielPushX());
         queueCompanion(()=>{
           if(companionStopped) return;
-          setSpanielState('nudging');
-        },760);
-        queueCompanion(()=>{
-          if(companionStopped) return;
           setActive(activeIndex+1);
-        },980);
+        },900);
         queueCompanion(()=>{
           setSpanielState('returning');
           setSpanielX(0);
-        },1280);
+        },1180);
         queueCompanion(()=>{
           companionAnimating=false;
           setSpanielState('sleeping');
-        },2080);
+        },1880);
       };
       offersWrap.addEventListener('wheel',(e)=>{
         if(!carouselInView()) return;
