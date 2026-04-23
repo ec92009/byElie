@@ -194,30 +194,53 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   object-fit:contain;
   object-position:left bottom;
   filter:drop-shadow(0 16px 14px rgba(40,24,10,.12));
-  transition:opacity .34s ease,transform .4s cubic-bezier(.22,.65,.2,1);
+  transition:opacity 1.02s ease,transform 1.2s cubic-bezier(.22,.65,.2,1);
 }
 .carousel-companion .spaniel-figure *{
   vector-effect:non-scaling-stroke;
 }
-.carousel-companion .spaniel-figure.sleeping-pose{
-  opacity:0;
-  transform:translate(-8px,10px) scale(.86);
-}
-.carousel-companion .spaniel-figure.awake-pose{
-  opacity:1;
-  transform:translate(0,0) scale(1);
-}
-.carousel-companion[data-state="sleeping"] .spaniel-figure.awake-pose{
-  opacity:0;
-  transform:translate(14px,10px) scale(.9);
-}
-.carousel-companion[data-state="sleeping"] .spaniel-figure.sleeping-pose{
-  opacity:1;
-  transform:translate(0,0) scale(1);
-}
-.carousel-companion[data-state="sleeping"]{
+.carousel-companion .spaniel-figure.sleeping-pose{transform:translate(-8px,10px) scale(.86)}
+.carousel-companion .spaniel-figure.awake-pose{transform:translate(0,0) scale(1)}
+.carousel-companion[data-sleep-pose="true"] .spaniel-figure.awake-pose{transform:translate(14px,10px) scale(.9)}
+.carousel-companion[data-sleep-pose="true"] .spaniel-figure.sleeping-pose{transform:translate(0,0) scale(1)}
+.carousel-companion[data-sleep-pose="true"]{
   width:clamp(96px,calc(var(--carousel-card-height,220px) * .72),210px);
 }
+.carousel-companion .spaniel-part{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1) rotate(0deg);
+  transform-box:fill-box;
+  transform-origin:center;
+  transition:opacity .72s ease var(--part-delay,0s),transform 1.2s cubic-bezier(.22,.65,.2,1) var(--part-delay,0s);
+}
+.carousel-companion .part-tail{--part-delay:0s;transform-origin:20% 78%}
+.carousel-companion .part-body{--part-delay:.08s;transform-origin:48% 62%}
+.carousel-companion .part-head{--part-delay:.16s;transform-origin:52% 45%}
+.carousel-companion .part-ears{--part-delay:.24s;transform-origin:48% 42%}
+.carousel-companion .part-face{--part-delay:.32s;transform-origin:54% 42%}
+.carousel-companion .part-front{--part-delay:.4s;transform-origin:52% 78%}
+.carousel-companion .sleeping-pose .spaniel-part{
+  opacity:0;
+}
+.carousel-companion .sleeping-pose .part-tail{transform:translate(-30px,24px) rotate(-24deg) scale(.82)}
+.carousel-companion .sleeping-pose .part-body{transform:translate(-16px,18px) scale(.88)}
+.carousel-companion .sleeping-pose .part-head{transform:translate(22px,20px) scale(.84)}
+.carousel-companion .sleeping-pose .part-ears{transform:translate(18px,14px) rotate(8deg) scale(.88)}
+.carousel-companion .sleeping-pose .part-face{transform:translate(24px,12px) scale(.78)}
+.carousel-companion .sleeping-pose .part-front{transform:translate(-6px,26px) scale(.82)}
+.carousel-companion[data-sleep-pose="true"] .sleeping-pose .spaniel-part{
+  opacity:1;
+  transform:translate3d(0,0,0) scale(1) rotate(0deg);
+}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .spaniel-part{
+  opacity:0;
+}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-tail{transform:translate(30px,24px) rotate(18deg) scale(.78)}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-body{transform:translate(-20px,18px) scale(.82)}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-head{transform:translate(18px,30px) scale(.82)}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-ears{transform:translate(24px,18px) rotate(12deg) scale(.84)}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-face{transform:translate(18px,20px) scale(.76)}
+.carousel-companion[data-sleep-pose="true"] .awake-pose .part-front{transform:translate(-18px,34px) scale(.72)}
 .carousel-companion .spaniel-ear{
   transform-box:fill-box;
   transform-origin:18% 10%;
