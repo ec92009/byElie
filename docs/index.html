@@ -13,8 +13,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=54.1"/>
-  <link rel="stylesheet" href="./styles.css?v=54.1"/>
+  <link rel="stylesheet" href="./shared.css?v=54.2"/>
+  <link rel="stylesheet" href="./styles.css?v=54.2"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,12 +49,12 @@
       <a href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.1</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v54.2</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
     <section class="panel hero hero-home">
-      <p class="version-pill" aria-label="Current version">Version v54.1</p>
+      <p class="version-pill" aria-label="Current version">Version v54.2</p>
       <p class="eyebrow">Creator Portfolio</p>
       <h1>Creation and engineering at your service</h1>
       <p class="lead">I blend hands-on building, CAD thinking, and AI-assisted systems (including ClawdBot workflows) to ship visual assets people can buy, print, and trust.</p>
@@ -78,6 +78,25 @@
           <article class="card carousel-item" data-offer-item data-href="./gallery.html"><div class="service-logo" aria-hidden="true">03</div><h3>Photo Services</h3><p>Marketplace-ready product photos with lighting, composition, and edits tuned for conversion instead of just aesthetics.</p></article>
           <article class="card carousel-item" data-offer-item data-href="./cad-design.html"><div class="service-logo" aria-hidden="true">04</div><h3>CAD on demand</h3><p>Idea-to-file modeling with revision loops, printability checks, and exports your manufacturer or printer can use immediately.</p></article>
           <article class="card carousel-item" data-offer-item data-href="./web-design.html"><div class="service-logo" aria-hidden="true">05</div><h3>Website Design & Maintenance</h3><p>Business websites that stay up-to-date with AI-assisted content operations and fast iteration as your offer evolves.</p></article>
+        </div>
+        <div class="carousel-companion" data-spaniel data-state="sleeping" aria-hidden="true">
+          <div class="spaniel-figure">
+            <span class="spaniel-shadow"></span>
+            <span class="spaniel-tail"></span>
+            <span class="spaniel-body"></span>
+            <span class="spaniel-body-patch"></span>
+            <span class="spaniel-head"></span>
+            <span class="spaniel-muzzle"></span>
+            <span class="spaniel-ear spaniel-ear-back"></span>
+            <span class="spaniel-ear spaniel-ear-front"></span>
+            <span class="spaniel-eye"></span>
+            <span class="spaniel-nose"></span>
+            <span class="spaniel-leg leg-back"></span>
+            <span class="spaniel-leg leg-mid"></span>
+            <span class="spaniel-leg leg-front"></span>
+            <span class="spaniel-leg leg-front-2"></span>
+            <span class="spaniel-z">z</span>
+          </div>
         </div>
       </div>
       <div class="carousel-dots" data-offers-dots aria-label="Offerings pagination"></div>
@@ -141,11 +160,13 @@
     const offersDots=document.querySelector('[data-offers-dots]');
     const prevBtn=document.querySelector('[data-offers-prev]');
     const nextBtn=document.querySelector('[data-offers-next]');
+    const spaniel=document.querySelector('[data-spaniel]');
 
     if(offersWrap && offersTrack && offerItems.length){
       offersWrap.classList.add('is-enhanced');
       let activeIndex=0;
       const total=offerItems.length;
+      let currentProfile=null;
       const wrapIndex=(n)=>((n%total)+total)%total;
       const relOffset=(index)=>{
         let d=index-activeIndex;
@@ -184,6 +205,10 @@
         offersWrap.style.setProperty('--carousel-height',`${cardHeight}px`);
         offersWrap.style.setProperty('--carousel-perspective',`${Math.max(1200,Math.round(wrapWidth*2.6))}px`);
         return {
+          wrapWidth,
+          cardWidth,
+          cardHeight,
+          spanielWidth:Math.round(Math.min(Math.max(cardHeight*.62,84),188)),
           tx:Math.round(Math.min(wrapWidth*(compact?0.34:medium?0.33:0.29),cardWidth*(compact?0.42:medium?0.56:0.72))),
           tz:Math.round(Math.min(Math.max(cardWidth*(compact?0.2:medium?0.25:0.33),72),220)),
           ry:compact?12:medium?16:18,
@@ -196,6 +221,7 @@
 
       const render=()=>{
         const p=profile();
+        currentProfile=p;
         offersTrack.style.transform='none';
         offerItems.forEach((item,index)=>{
           const off=relOffset(index);
@@ -210,6 +236,47 @@
           item.classList.toggle('is-active',off===0);
         });
         updateDots();
+      };
+
+      const motionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+      let companionStopped=false;
+      let companionAnimating=false;
+      let companionTimer=null;
+      const companionTimeouts=new Set();
+      const queueCompanion=(fn,delay)=>{
+        const id=window.setTimeout(()=>{
+          companionTimeouts.delete(id);
+          fn();
+        },delay);
+        companionTimeouts.add(id);
+        return id;
+      };
+      const clearCompanionTimeouts=()=>{
+        companionTimeouts.forEach((id)=>window.clearTimeout(id));
+        companionTimeouts.clear();
+      };
+      const setSpanielState=(state)=>{
+        if(!spaniel) return;
+        spaniel.dataset.state=state;
+      };
+      const setSpanielX=(value)=>{
+        if(!spaniel) return;
+        spaniel.style.setProperty('--companion-x',`${Math.round(value)}px`);
+      };
+      const restSpaniel=()=>{
+        clearCompanionTimeouts();
+        companionAnimating=false;
+        setSpanielX(0);
+        setSpanielState('sleeping');
+      };
+      const stopSpaniel=()=>{
+        if(companionStopped) return;
+        companionStopped=true;
+        if(companionTimer!==null){
+          window.clearInterval(companionTimer);
+          companionTimer=null;
+        }
+        restSpaniel();
       };
 
       const setActive=(i)=>{
@@ -247,6 +314,37 @@
         const vh=window.innerHeight||document.documentElement.clientHeight;
         return r.top < vh*0.8 && r.bottom > vh*0.2;
       };
+      const spanielPushX=()=>{
+        const p=currentProfile || profile();
+        const baseLeft=14;
+        const targetLeft=Math.min(
+          p.wrapWidth-p.spanielWidth-baseLeft-8,
+          ((p.wrapWidth-p.cardWidth)/2)+Math.min(p.cardWidth*.18,64)
+        );
+        return Math.max(0,targetLeft-baseLeft);
+      };
+      const runSpanielCycle=()=>{
+        if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
+        companionAnimating=true;
+        setSpanielState('trotting');
+        setSpanielX(spanielPushX());
+        queueCompanion(()=>{
+          if(companionStopped) return;
+          setSpanielState('nudging');
+        },760);
+        queueCompanion(()=>{
+          if(companionStopped) return;
+          setActive(activeIndex+1);
+        },980);
+        queueCompanion(()=>{
+          setSpanielState('returning');
+          setSpanielX(0);
+        },1280);
+        queueCompanion(()=>{
+          companionAnimating=false;
+          setSpanielState('sleeping');
+        },2080);
+      };
       offersWrap.addEventListener('wheel',(e)=>{
         if(!carouselInView()) return;
         const mostlyHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY) * 1.35;
@@ -264,6 +362,9 @@
 
       let touchStartX=null;
       offersWrap.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0]?.clientX??null;},{passive:true});
+      offersWrap.addEventListener('touchstart',(e)=>{
+        if(e.target.closest('[data-offer-item]')) stopSpaniel();
+      },{passive:true});
       offersWrap.addEventListener('touchend',(e)=>{
         if(touchStartX===null) return;
         const endX=e.changedTouches[0]?.clientX??touchStartX;
@@ -278,6 +379,7 @@
       let dragMoved=false;
       offersWrap.addEventListener('pointerdown',(e)=>{
         if(e.pointerType==='mouse' && e.button!==0) return;
+        if(e.target.closest('[data-offer-item]')) stopSpaniel();
         pointerStartX=e.clientX;
         pointerDragging=true;
         dragMoved=false;
@@ -329,6 +431,11 @@
         resizeObserver.observe(offersWrap);
       }
       render();
+      if(spaniel && !motionQuery.matches){
+        companionTimer=window.setInterval(runSpanielCycle,5000);
+      } else {
+        restSpaniel();
+      }
     }
 
     const metricEls=[...document.querySelectorAll('.metric-value')];
