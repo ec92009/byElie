@@ -177,6 +177,9 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 .carousel-wrap.is-enhanced .carousel-companion[data-state="pulling"]{
   transition-duration:.63s,.24s;
 }
+.carousel-wrap.is-enhanced .carousel-companion[data-state="dragging"]{
+  transition-duration:.42s,.24s;
+}
 .carousel-wrap.is-enhanced .carousel-companion[data-can-wake="true"]{
   pointer-events:auto;
   cursor:pointer;
@@ -189,6 +192,19 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   object-fit:contain;
   object-position:left bottom;
   filter:drop-shadow(0 16px 14px rgba(40,24,10,.12));
+}
+.carousel-companion .spaniel-figure *{
+  vector-effect:non-scaling-stroke;
+}
+.carousel-companion .spaniel-ear{
+  transform-box:fill-box;
+  transform-origin:18% 10%;
+}
+.carousel-companion .spaniel-ear.ear-trailing{
+  transform-origin:14% 10%;
+}
+.carousel-companion[data-state="dragging"] .spaniel-ear.ear-trailing{
+  animation:spaniel-ear-flick .42s ease-in-out both;
 }
 .carousel-companion .spaniel-z{
   position:absolute;
@@ -204,8 +220,14 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   opacity:1;
 }
 .carousel-companion[data-state="pulling"] .spaniel-z,
+.carousel-companion[data-state="dragging"] .spaniel-z,
 .carousel-companion[data-state="returning"] .spaniel-z{
   opacity:0;
+}
+@keyframes spaniel-ear-flick{
+  0%{transform:rotate(0deg)}
+  50%{transform:rotate(-78deg) translateY(-6px)}
+  100%{transform:rotate(0deg)}
 }
 .carousel-item .btn{margin-top:12px}
 .carousel-item.is-active{pointer-events:auto}
