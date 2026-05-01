@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.11"/>
+  <link rel="stylesheet" href="./shared.css?v=62.12"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a  href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a  href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v62.11</div>
+    <div class="brand">BY ELIE — v62.12</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -359,16 +359,13 @@
       };
       const spanielPushX=()=>{
         const p=currentProfile || profile();
-        const baseLeft=p.wrapWidth<560?-190:14;
+        const compact=p.wrapWidth<560;
+        const baseLeft=compact?-190:14;
         const centerCardLeft=(p.wrapWidth-p.cardWidth)/2;
-        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<900?.14:.3));
-        const compactTargetLeft=centerCardLeft+p.cardWidth-Math.round(p.spanielWidth*.38);
-        const wideTargetLeft=centerCardLeft-p.spanielWidth+cardEdgeLead;
-        const targetLeft=Math.min(
-          p.wrapWidth-p.spanielWidth-baseLeft-8,
-          Math.max(baseLeft,p.wrapWidth<560?compactTargetLeft:wideTargetLeft)
-        );
-        return Math.max(0,targetLeft-baseLeft);
+        const grabEdge=compact?centerCardLeft+p.cardWidth:centerCardLeft;
+        const targetLeft=grabEdge-(p.spanielWidth/2);
+        const maxLeft=p.wrapWidth-p.spanielWidth-baseLeft-8;
+        return Math.round(Math.min(maxLeft,Math.max(0,targetLeft-baseLeft)));
       };
       const runSpanielCycle=()=>{
         if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
