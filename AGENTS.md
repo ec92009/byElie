@@ -31,7 +31,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 - `Y` increments with each build/change on that same day.
 - Example: on `2026-04-18` (day 49), start at `v49.0`, then `v49.1`, `v49.2`, and so on.
 - Always bump `Y` for each new build on the same day.
-- Update the version badge in the topbar and the `version-pill` in the hero.
+- Update the version badge in the topbar.
 - Also bump CSS cache-bust query strings (`?v=X.Y`) on `shared.css` and `styles.css` in every HTML file.
 
 ## Workspace Structure
@@ -46,6 +46,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 - Start a local server from the repo root: `python3 -m http.server 8000`
 - Home: `http://localhost:8000/`
 - For "show me" flows, serve the repo root and report the localhost URL, LAN URL, public GitHub Pages URL, and exact visible UI version called for by `SHOW_ME_SOP.md`.
+- GitHub Pages serves from `main` at `/`; do not recreate a `docs/` mirror.
 
 ## Execution Discipline
 

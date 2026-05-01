@@ -33,8 +33,13 @@ python3 scripts/site_maintenance.py --version "$(cat VERSION)"
 
 To publish a new build, update `VERSION` to the next `vX.Y` value without the `v` prefix, then run the same command.
 
+GitHub Pages serves this repo from `main` at `/`. There is no `docs/` mirror; edit the root HTML/CSS files directly.
+
+The carousel spaniel behavior is duplicated inline across the six HTML pages. When changing its movement or sizing, update all six pages and verify both wide and compact viewport behavior.
+
 ## GitHub
 
 - `origin`: `https://github.com/ec92009/byElie.git`
+- GitHub Pages: `https://ec92009.github.io/byElie/`
 
 Local workspace: `/Users/ecohen/Dev/byElie`
