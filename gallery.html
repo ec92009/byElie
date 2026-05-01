@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.0"/>
+  <link rel="stylesheet" href="./shared.css?v=62.1"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a  href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a class="is-active" href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v62.0</div>
+    <div class="brand">BY ELIE — v62.1</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -207,10 +207,10 @@
         const compact=wrapWidth<560;
         const medium=wrapWidth<900;
         const cardWidth=compact
-          ? Math.max(240,wrapWidth-20)
+          ? Math.max(210,Math.min(wrapWidth-20,wrapWidth*.56))
           : medium
-            ? Math.min(Math.max(wrapWidth*0.64,300),wrapWidth-48)
-            : Math.min(Math.max(wrapWidth*0.34,320),620);
+            ? Math.min(Math.max(wrapWidth*.32,250),wrapWidth-56)
+            : Math.min(Math.max(wrapWidth*.17,220),340);
         const cardHeight=Math.round(
           Math.min(
             Math.max(cardWidth*(compact?0.82:0.72),240),
@@ -360,7 +360,7 @@
         const p=currentProfile || profile();
         const baseLeft=14;
         const centerCardLeft=(p.wrapWidth-p.cardWidth)/2;
-        const cardEdgeLead=Math.round(p.spanielWidth*.28);
+        const cardEdgeLead=Math.round(p.spanielWidth*.08);
         const targetLeft=Math.min(
           p.wrapWidth-p.spanielWidth-baseLeft-8,
           Math.max(baseLeft,centerCardLeft-p.spanielWidth+cardEdgeLead)
