@@ -13,6 +13,7 @@ Creator portfolio and service site for Elie — 3D print plans, physical prints,
 - `shared.css`: shared layout and component styles
 - `styles.css`: page-specific overrides and theme
 - `assets/`: logos and images
+- `VERSION`: visible site/cache-bust version source
 
 ## Dependencies
 
@@ -21,6 +22,16 @@ No build step or package manager required.
 - Browser: plain HTML/CSS/JS
 - Local preview: `python3 -m http.server`
 - External assets: Google Fonts loaded at runtime
+
+## Maintenance
+
+After editing site files, sync visible version strings:
+
+```sh
+python3 scripts/site_maintenance.py --version "$(cat VERSION)"
+```
+
+To publish a new build, update `VERSION` to the next `vX.Y` value without the `v` prefix, then run the same command.
 
 ## GitHub
 

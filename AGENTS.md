@@ -22,7 +22,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 - Make small, clear commits with the prefix `byelie:`.
 - Default to keeping `main` pushable.
 - Use branches for larger changes; preferred branch prefix: `codex/`.
-- After modifying the site, update docs when needed.
+- After modifying the site, update documentation when needed.
 
 ## Versioning
 
@@ -38,7 +38,6 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 
 - Repo root: `/Users/ecohen/Dev/byElie`
 - Pages: `index.html`, `plans.html`, `prints.html`, `gallery.html`, `cad-design.html`, `web-design.html`
-- Viewer mirror for local/public previews: `docs/`
 - Styles: `shared.css`, `styles.css`
 - Assets: `assets/`
 
@@ -46,7 +45,7 @@ Repo-level working preferences for `/Users/ecohen/Dev/byElie`.
 
 - Start a local server from the repo root: `python3 -m http.server 8000`
 - Home: `http://localhost:8000/`
-- For "show me" flows, serve `docs/` and report the localhost URL, LAN URL, public GitHub Pages URL, and exact visible UI version called for by `SHOW_ME_SOP.md`.
+- For "show me" flows, serve the repo root and report the localhost URL, LAN URL, public GitHub Pages URL, and exact visible UI version called for by `SHOW_ME_SOP.md`.
 
 ## Execution Discipline
 

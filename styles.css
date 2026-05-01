@@ -1,6 +1,13 @@
 body .hero{
   background:var(--bg);
 }
+@keyframes hero-fade-up{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.hero h1{animation:hero-fade-up .65s ease both;animation-delay:.14s}
+.hero .lead{animation:hero-fade-up .65s ease both;animation-delay:.28s}
+.hero .cta{animation:hero-fade-up .65s ease both;animation-delay:.42s}
 .hero-home h1{
   font-size:clamp(1.8rem,4.875vw,4.05rem);
 }
@@ -28,6 +35,7 @@ body .hero{
   transform:translateX(420%) skewX(-18deg);
 }
 @media (prefers-reduced-motion:reduce){
+  .hero h1,.hero .lead,.hero .cta{animation:none}
   .hero-home .cta .btn::before{
     display:none;
   }
