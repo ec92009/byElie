@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.8"/>
+  <link rel="stylesheet" href="./shared.css?v=62.9"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a class="is-active" href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v62.8</div>
+    <div class="brand">BY ELIE — v62.9</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -360,10 +360,12 @@
         const p=currentProfile || profile();
         const baseLeft=p.wrapWidth<560?-190:14;
         const centerCardLeft=(p.wrapWidth-p.cardWidth)/2;
-        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<560?.34:p.wrapWidth<900?.14:.3));
+        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<900?.14:.3));
+        const compactTargetLeft=centerCardLeft+p.cardWidth-Math.round(p.spanielWidth*.38);
+        const wideTargetLeft=centerCardLeft-p.spanielWidth+cardEdgeLead;
         const targetLeft=Math.min(
           p.wrapWidth-p.spanielWidth-baseLeft-8,
-          Math.max(baseLeft,centerCardLeft-p.spanielWidth+cardEdgeLead)
+          Math.max(baseLeft,p.wrapWidth<560?compactTargetLeft:wideTargetLeft)
         );
         return Math.max(0,targetLeft-baseLeft);
       };
@@ -374,20 +376,25 @@
         setSpanielSleepPose(false);
         setSpanielSleepUi({showText:false,canWake:false});
         setSpanielState('pulling');
-        setSpanielX(spanielPushX());
         if(p.wrapWidth<560){
+          setSpanielX(0);
+          queueCompanion(()=>{
+            if(companionStopped) return;
+            setSpanielX(spanielPushX());
+          },80);
           queueCompanion(()=>{
             if(companionStopped) return;
             setSpanielState('dragging');
             setActive(activeIndex+1);
-            setSpanielX(0);
-          },1080);
+          },1280);
           queueCompanion(()=>{
             companionAnimating=false;
-            restSpaniel();
-          },1880);
+            setSpanielState('sleeping');
+            setSpanielSleepUi({showText:false,canWake:false});
+          },2020);
           return;
         }
+        setSpanielX(spanielPushX());
         queueCompanion(()=>{
           if(companionStopped) return;
           setSpanielState('dragging');
