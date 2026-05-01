@@ -160,7 +160,7 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   transition-duration:.63s,.24s;
 }
 .carousel-wrap.is-enhanced .carousel-companion[data-state="dragging"]{
-  transition-duration:.42s,.24s;
+  transition-duration:.62s,.24s;
 }
 .carousel-wrap.is-enhanced .carousel-companion[data-can-wake="true"]{
   pointer-events:auto;
@@ -231,7 +231,7 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   transform-origin:14% 10%;
 }
 .carousel-companion[data-state="dragging"] .spaniel-ear.ear-trailing{
-  animation:spaniel-ear-flick .42s ease-in-out both;
+  animation:spaniel-ear-flick .62s ease-in-out both;
 }
 .carousel-companion .spaniel-z{
   position:absolute;
