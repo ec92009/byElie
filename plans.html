@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.1"/>
+  <link rel="stylesheet" href="./shared.css?v=62.3"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a  href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a  href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v62.1</div>
+    <div class="brand">BY ELIE — v62.3</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -360,7 +360,7 @@
         const p=currentProfile || profile();
         const baseLeft=14;
         const centerCardLeft=(p.wrapWidth-p.cardWidth)/2;
-        const cardEdgeLead=Math.round(p.spanielWidth*.08);
+        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<560?-.18:p.wrapWidth<900?.14:.3));
         const targetLeft=Math.min(
           p.wrapWidth-p.spanielWidth-baseLeft-8,
           Math.max(baseLeft,centerCardLeft-p.spanielWidth+cardEdgeLead)
