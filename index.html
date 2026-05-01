@@ -21,8 +21,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.3"/>
-  <link rel="stylesheet" href="./styles.css?v=62.3"/>
+  <link rel="stylesheet" href="./shared.css?v=62.6"/>
+  <link rel="stylesheet" href="./styles.css?v=62.6"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
       <a href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v62.3</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v62.6</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -386,9 +386,9 @@
       };
       const spanielPushX=()=>{
         const p=currentProfile || profile();
-        const baseLeft=14;
+        const baseLeft=p.wrapWidth<560?-190:14;
         const centerCardLeft=(p.wrapWidth-p.cardWidth)/2;
-        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<560?-.18:p.wrapWidth<900?.14:.3));
+        const cardEdgeLead=Math.round(p.spanielWidth*(p.wrapWidth<560?.34:p.wrapWidth<900?.14:.3));
         const targetLeft=Math.min(
           p.wrapWidth-p.spanielWidth-baseLeft-8,
           Math.max(baseLeft,centerCardLeft-p.spanielWidth+cardEdgeLead)
@@ -397,11 +397,25 @@
       };
       const runSpanielCycle=()=>{
         if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
+        const p=currentProfile || profile();
         companionAnimating=true;
         setSpanielSleepPose(false);
-        setSpanielState('pulling');
         setSpanielSleepUi({showText:false,canWake:false});
+        setSpanielState('pulling');
         setSpanielX(spanielPushX());
+        if(p.wrapWidth<560){
+          queueCompanion(()=>{
+            if(companionStopped) return;
+            setSpanielState('dragging');
+            setActive(activeIndex+1);
+            setSpanielX(0);
+          },760);
+          queueCompanion(()=>{
+            companionAnimating=false;
+            restSpaniel();
+          },1180);
+          return;
+        }
         queueCompanion(()=>{
           if(companionStopped) return;
           setSpanielState('dragging');
