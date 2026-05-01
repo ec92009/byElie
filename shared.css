@@ -159,8 +159,14 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 .carousel-wrap.is-enhanced .carousel-companion[data-state="pulling"]{
   transition-duration:.63s,.24s;
 }
+.carousel-wrap.is-enhanced .carousel-companion[data-compact-cycle="true"][data-state="pulling"]{
+  transition-duration:1.26s,.24s;
+}
 .carousel-wrap.is-enhanced .carousel-companion[data-state="dragging"]{
   transition-duration:.62s,.24s;
+}
+.carousel-wrap.is-enhanced .carousel-companion[data-compact-cycle="true"][data-state="dragging"]{
+  transition-duration:1.24s,.24s;
 }
 .carousel-wrap.is-enhanced .carousel-companion[data-can-wake="true"]{
   pointer-events:auto;

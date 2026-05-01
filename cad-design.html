@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=62.10"/>
+  <link rel="stylesheet" href="./shared.css?v=62.11"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a class="is-active" href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v62.10</div>
+    <div class="brand">BY ELIE — v62.11</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -296,6 +296,7 @@
         clearCompanionTimeouts();
         companionAnimating=false;
         setSpanielX(0);
+        if(spaniel) spaniel.dataset.compactCycle='false';
         setSpanielState('sleeping');
         setSpanielSleepPose(useSleepPose);
         setSpanielSleepUi({showText,canWake});
@@ -373,11 +374,13 @@
         if(!spaniel || companionStopped || companionAnimating || motionQuery.matches || document.hidden || !carouselInView()) return;
         const p=currentProfile || profile();
         companionAnimating=true;
+        spaniel.dataset.compactCycle=p.wrapWidth<560?'true':'false';
         setSpanielSleepPose(false);
         setSpanielSleepUi({showText:false,canWake:false});
         setSpanielState('pulling');
         setSpanielX(spanielPushX());
-        const tugDelay=p.wrapWidth<560?1280:1020;
+        const compactCycle=p.wrapWidth<560;
+        const tugDelay=compactCycle?2560:1020;
         queueCompanion(()=>{
           if(companionStopped) return;
           setSpanielState('dragging');
@@ -387,7 +390,7 @@
         queueCompanion(()=>{
           companionAnimating=false;
           restSpaniel();
-        },tugDelay+700);
+        },tugDelay+(compactCycle?1400:700));
       };
       spaniel?.addEventListener('pointerdown',(e)=>{
         if(!companionStopped) return;
