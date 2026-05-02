@@ -1,6 +1,6 @@
 # byElie
 
-Creator portfolio and service site for Elie — 3D print plans, physical prints, photo services, CAD on demand, and web design.
+Creator portfolio and service site for Elie — 3D print plans, physical prints, photo services, Photos By Elie galleries, CAD on demand, and web design.
 
 ## Structure
 
@@ -10,6 +10,7 @@ Creator portfolio and service site for Elie — 3D print plans, physical prints,
 - `gallery.html`: photo services
 - `cad-design.html`: CAD on demand
 - `web-design.html`: website design & maintenance
+- `../PhotosByElie/`: sibling static photo hub linked from the home page
 - `shared.css`: shared layout and component styles
 - `styles.css`: page-specific overrides and theme
 - `assets/`: logos and images
