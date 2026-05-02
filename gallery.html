@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=63.3"/>
+  <link rel="stylesheet" href="./shared.css?v=63.4"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
       <a  href="./cad-design.html">CAD on demand</a> <span>|</span>
       <a class="is-active" href="./gallery.html">Gallery</a>
     </nav>
-    <div class="brand">BY ELIE — v63.3</div>
+    <div class="brand">BY ELIE — v63.4</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -419,16 +419,29 @@
       },{passive:false});
 
       let touchStartX=null;
-      offersWrap.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0]?.clientX??null;},{passive:true});
+      let touchStartY=null;
+      let touchHandled=false;
+      offersWrap.addEventListener('touchstart',(e)=>{
+        touchStartX=e.touches[0]?.clientX??null;
+        touchStartY=e.touches[0]?.clientY??null;
+        touchHandled=false;
+      },{passive:true});
       offersWrap.addEventListener('touchstart',(e)=>{
         if(!e.target.closest('[data-spaniel]')) stopSpaniel();
       },{passive:true});
       offersWrap.addEventListener('touchend',(e)=>{
-        if(touchStartX===null) return;
+        if(touchStartX===null || touchStartY===null || touchHandled) return;
         const endX=e.changedTouches[0]?.clientX??touchStartX;
+        const endY=e.changedTouches[0]?.clientY??touchStartY;
         const dx=endX-touchStartX;
-        if(Math.abs(dx)>32) setActive(activeIndex+(dx<0?1:-1));
+        const dy=endY-touchStartY;
+        const horizontalSwipe=Math.abs(dx)>54 && Math.abs(dx)>Math.abs(dy)*1.35;
+        if(horizontalSwipe){
+          touchHandled=true;
+          setActive(activeIndex+(dx<0?1:-1));
+        }
         touchStartX=null;
+        touchStartY=null;
       },{passive:true});
 
       /* Mouse / pointer drag (desktop) */
@@ -436,7 +449,8 @@
       let pointerDragging=false;
       let dragMoved=false;
       offersWrap.addEventListener('pointerdown',(e)=>{
-        if(e.pointerType==='mouse' && e.button!==0) return;
+        if(e.pointerType!=='mouse') return;
+        if(e.button!==0) return;
         if(!e.target.closest('[data-spaniel]')) stopSpaniel();
         pointerStartX=e.clientX;
         pointerDragging=true;
@@ -444,11 +458,13 @@
         offersWrap.classList.add('is-dragging');
       });
       offersWrap.addEventListener('pointermove',(e)=>{
+        if(e.pointerType!=='mouse') return;
         if(!pointerDragging || pointerStartX===null) return;
         const dx=e.clientX-pointerStartX;
         if(Math.abs(dx)>8) dragMoved=true;
       });
       offersWrap.addEventListener('pointerup',(e)=>{
+        if(e.pointerType!=='mouse') return;
         if(!pointerDragging || pointerStartX===null) return;
         const dx=e.clientX-pointerStartX;
         if(Math.abs(dx)>28) setActive(activeIndex+(dx<0?1:-1));
