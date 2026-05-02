@@ -38,6 +38,15 @@ GitHub Pages serves this repo from `main` at `/`. There is no `docs/` mirror; ed
 
 The carousel spaniel behavior is duplicated inline across the six HTML pages. When changing its movement or sizing, update all six pages and verify both wide and compact viewport behavior.
 
+## Related Sites
+
+- Photos By Elie now lives as a standalone repo/site at `https://ec92009.github.io/PhotosByElie/`.
+- The Webapps hub links to Photos By Elie and also mirrors it under `/PhotosByElie/`.
+- Photos By Elie uses the byElie visual language and carousel structure, but keeps its gallery, detail, and basket code in its own repo.
+- Current Photos By Elie version at the end of this conversation: `v63.8`.
+- Photos By Elie collections are France, USA, Spain, Mexico, and AI.
+- Photos By Elie basket state is localStorage-backed and is the source of truth for selected photo resolutions.
+
 ## GitHub
 
 - `origin`: `https://github.com/ec92009/byElie.git`

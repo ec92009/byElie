@@ -46,3 +46,53 @@ Date: 2026-05-01
 
 - `.claude/`
 - `_src/`
+
+---
+
+# Conversation Summary
+
+Date: 2026-05-02
+
+## Scope
+
+Started from the byElie visual system and created a separate Photos By Elie static site, then connected it through the Webapps hub. byElie itself remained the visual/reference source; no byElie site UI changes were made in this conversation.
+
+## Photos By Elie Relationship
+
+- Standalone repo/site: `/Users/ecohen/Dev/PhotosByElie`
+- Live site: `https://ec92009.github.io/PhotosByElie/`
+- Hub repo: `/Users/ecohen/Dev/Webapps`
+- Hub live site: `https://ec92009.github.io/Webapps/`
+- Photos By Elie uses byElie's look and feel, logo, topbar treatment, theme behavior, carousel structure, and spaniel companion pattern.
+
+## Photos By Elie Features Added
+
+- Added collection carousel and gallery pages for France, USA, Spain, Mexico, and AI.
+- Kept AI last in the collection order.
+- Refactored galleries to use shared data/rendering instead of duplicated page code.
+- Added reusable photo detail pages.
+- Added a localStorage-backed basket.
+- Made the basket the source of truth for selected resolutions.
+- Detail page resolution checkbox changes now immediately update the basket.
+- Basket rows show thumbnails and editable resolution checkboxes.
+- Duplicate photo charges are prevented by storing one basket row per photo.
+
+## Leonardo Images
+
+- Checked `~/Pictures/Leonardo/2023/07/12`; it contained empty `UPSCALE` folders.
+- Going up to `~/Pictures/Leonardo/2023` found images in February through June.
+- Added eight resized generated JPGs from `~/Pictures/Leonardo/2023/06/08/UPSCALE` to the Photos By Elie AI gallery.
+
+## Version And Deployment
+
+- Photos By Elie current version: `v63.8`.
+- Webapps hub current Photos By Elie card version: `v63.8`.
+- Pushed the standalone PhotosByElie repo and the Webapps hub repo after each major change.
+- Latest PhotosByElie commit before this summary: `c2f1604 photosbyelie: auto-sync detail selections`.
+- Latest Webapps commit before this summary: `be14482 hub: sync Photos By Elie auto basket`.
+
+## byElie Notes
+
+- Existing byElie untracked folders remain intentionally untouched:
+  - `.claude/`
+  - `_src/`
