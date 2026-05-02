@@ -10,7 +10,7 @@ Creator portfolio and service site for Elie — 3D print plans, physical prints,
 - `gallery.html`: photo services
 - `cad-design.html`: CAD on demand
 - `web-design.html`: website design & maintenance
-- `../PhotosByElie/`: sibling static photo hub linked from the home page
+- `https://ec92009.github.io/PhotosByElie/`: public Photos By Elie hub linked from the home page
 - `shared.css`: shared layout and component styles
 - `styles.css`: page-specific overrides and theme
 - `assets/`: logos and images
