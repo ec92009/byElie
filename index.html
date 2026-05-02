@@ -21,8 +21,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=63.4"/>
-  <link rel="stylesheet" href="./styles.css?v=63.4"/>
+  <link rel="stylesheet" href="./shared.css?v=63.5"/>
+  <link rel="stylesheet" href="./styles.css?v=63.5"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
       <a href="./gallery.html">Gallery</a> <span>|</span>
       <a href="https://ec92009.github.io/PhotosByElie/">Photos By Elie</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v63.4</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v63.5</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -54,12 +54,12 @@
     <section id="offers" class="panel carousel" aria-label="Offerings carousel">
       <div class="carousel-wrap" data-offers-wrap tabindex="0">
         <div class="carousel-track" data-offers-track>
-          <article class="card carousel-item" data-offer-item data-href="./plans.html"><div class="service-logo" aria-hidden="true">01</div><h3>3D Print Plans</h3><p>Clean, tested STL/3MF releases built for real-world printers with practical tolerances and licensing ready for your shop.</p></article>
-          <article class="card carousel-item" data-offer-item data-href="./prints.html"><div class="service-logo" aria-hidden="true">02</div><h3>Printed Physical Items</h3><p>From one-off prototypes to small production runs, I print, finish, and quality-check every part before delivery.</p></article>
-          <article class="card carousel-item" data-offer-item data-href="./gallery.html"><div class="service-logo" aria-hidden="true">03</div><h3>Photo Services</h3><p>Marketplace-ready product photos with lighting, composition, and edits tuned for conversion instead of just aesthetics.</p></article>
-          <article class="card carousel-item" data-offer-item data-href="./cad-design.html"><div class="service-logo" aria-hidden="true">04</div><h3>CAD on demand</h3><p>Idea-to-file modeling with revision loops, printability checks, and exports your manufacturer or printer can use immediately.</p></article>
-          <article class="card carousel-item" data-offer-item data-href="./web-design.html"><div class="service-logo" aria-hidden="true">05</div><h3>Website Design & Maintenance</h3><p>Business websites that stay up-to-date with AI-assisted content operations and fast iteration as your offer evolves.</p></article>
-          <article class="card carousel-item" data-offer-item data-href="https://ec92009.github.io/PhotosByElie/"><div class="service-logo" aria-hidden="true">06</div><h3>Photos By Elie</h3><p>A dedicated photo hub for France, USA, Spain, and AI image collections with room for private delivery galleries.</p></article>
+          <a class="card carousel-item" data-offer-item href="./plans.html"><div class="service-logo" aria-hidden="true">01</div><h3>3D Print Plans</h3><p>Clean, tested STL/3MF releases built for real-world printers with practical tolerances and licensing ready for your shop.</p></a>
+          <a class="card carousel-item" data-offer-item href="./prints.html"><div class="service-logo" aria-hidden="true">02</div><h3>Printed Physical Items</h3><p>From one-off prototypes to small production runs, I print, finish, and quality-check every part before delivery.</p></a>
+          <a class="card carousel-item" data-offer-item href="./gallery.html"><div class="service-logo" aria-hidden="true">03</div><h3>Photo Services</h3><p>Marketplace-ready product photos with lighting, composition, and edits tuned for conversion instead of just aesthetics.</p></a>
+          <a class="card carousel-item" data-offer-item href="./cad-design.html"><div class="service-logo" aria-hidden="true">04</div><h3>CAD on demand</h3><p>Idea-to-file modeling with revision loops, printability checks, and exports your manufacturer or printer can use immediately.</p></a>
+          <a class="card carousel-item" data-offer-item href="./web-design.html"><div class="service-logo" aria-hidden="true">05</div><h3>Website Design & Maintenance</h3><p>Business websites that stay up-to-date with AI-assisted content operations and fast iteration as your offer evolves.</p></a>
+          <a class="card carousel-item" data-offer-item href="https://ec92009.github.io/PhotosByElie/"><div class="service-logo" aria-hidden="true">06</div><h3>Photos By Elie</h3><p>A dedicated photo hub for France, USA, Spain, and AI image collections with room for private delivery galleries.</p></a>
         </div>
         <div class="carousel-companion" data-spaniel data-state="sleeping" data-sleep-pose="false" aria-hidden="true">
           <svg class="spaniel-figure awake-pose" viewBox="0 0 1024 1024" role="presentation" focusable="false" aria-hidden="true">
@@ -285,6 +285,7 @@
           item.style.opacity=abs>p.maxDepth?'0':String(Math.max(p.minOpacity,1-abs*.34));
           item.style.zIndex=String(40-abs*10);
           item.classList.toggle('is-active',off===0);
+          if(item.matches('a[href]')) item.tabIndex=off===0?0:-1;
         });
         updateDots();
       };
@@ -516,7 +517,7 @@
 
       offerItems.forEach((item, index)=>{
         item.addEventListener('click',(e)=>{
-          if(dragMoved) return;
+          if(dragMoved){e.preventDefault();return;}
           const off=relOffset(index);
           if(off !== 0) {
             e.preventDefault();

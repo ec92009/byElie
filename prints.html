@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=63.4"/>
+  <link rel="stylesheet" href="./shared.css?v=63.5"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -35,9 +35,10 @@
       <a class="is-active" href="./prints.html">Physical Prints</a> <span>|</span>
       <a  href="./web-design.html">Web Design</a> <span>|</span>
       <a  href="./cad-design.html">CAD on demand</a> <span>|</span>
-      <a  href="./gallery.html">Gallery</a>
+      <a  href="./gallery.html">Gallery</a> <span>|</span>
+      <a href="https://ec92009.github.io/PhotosByElie/">Photos By Elie</a>
     </nav>
-    <div class="brand">BY ELIE — v63.4</div>
+    <div class="brand">BY ELIE — v63.5</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -254,6 +255,7 @@
           item.style.opacity=abs>p.maxDepth?'0':String(Math.max(p.minOpacity,1-abs*.34));
           item.style.zIndex=String(40-abs*10);
           item.classList.toggle('is-active',off===0);
+          if(item.matches('a[href]')) item.tabIndex=off===0?0:-1;
         });
         updateDots();
       };
@@ -485,7 +487,7 @@
 
       offerItems.forEach((item, index)=>{
         item.addEventListener('click',(e)=>{
-          if(dragMoved) return;
+          if(dragMoved){e.preventDefault();return;}
           const off=relOffset(index);
           if(off !== 0) {
             e.preventDefault();
