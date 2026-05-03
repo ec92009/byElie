@@ -21,7 +21,7 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=63.5"/>
+  <link rel="stylesheet" href="./shared.css?v=64.0"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
       <a href="./gallery.html">Gallery</a> <span>|</span>
       <a href="https://ec92009.github.io/PhotosByElie/">Photos By Elie</a>
     </nav>
-    <div class="brand">BY ELIE — v63.5</div>
+    <div class="brand">BY ELIE — v64.0</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -176,8 +176,6 @@
     const offersTrack=document.querySelector('[data-offers-track]');
     const offerItems=Array.from(document.querySelectorAll('[data-offer-item]'));
     const offersDots=document.querySelector('[data-offers-dots]');
-    const prevBtn=document.querySelector('[data-offers-prev]');
-    const nextBtn=document.querySelector('[data-offers-next]');
     const spaniel=document.querySelector('[data-spaniel]');
     const spanielSleepText=spaniel?.querySelector('.spaniel-z');
 
@@ -344,9 +342,6 @@
           offersDots.append(dot);
         });
       }
-
-      prevBtn?.addEventListener('click',()=>setActive(activeIndex-1));
-      nextBtn?.addEventListener('click',()=>setActive(activeIndex+1));
 
       /* Keyboard navigation */
       offersWrap.addEventListener('keydown',(e)=>{

@@ -76,18 +76,6 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
 .btn.secondary{background:var(--surface-2);color:var(--text)}
 .btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.15)}
 .grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-.carousel-btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:36px;height:36px;padding:0;
-  border-radius:999px;
-  border:1px solid var(--line);
-  background:var(--surface);
-  color:var(--text);
-  font-size:1.1rem;
-  cursor:pointer;
-  transition:transform .14s ease,background-color .14s ease,box-shadow .14s ease;
-}
-.carousel-btn:hover{background:var(--surface-2);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.14)}
 .carousel-wrap{
   position:relative;
   overflow-x:auto;
