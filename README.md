@@ -15,6 +15,8 @@ Creator portfolio and service site for Elie — 3D print plans, physical prints,
 - `styles.css`: page-specific overrides and theme
 - `assets/`: logos and images
 - `VERSION`: visible site/cache-bust version source
+- `TODO.md`: review-derived backlog and completion status
+- `Archive/`: archived review documents
 
 ## Dependencies
 
@@ -43,6 +45,10 @@ To publish a new build, update `VERSION` to the next `vX.Y` value without the `v
 GitHub Pages serves this repo from `main` at `/`. There is no `docs/` mirror; edit the root HTML/CSS files directly.
 
 The page shell is owned by `scripts/site_maintenance.py`. Page-specific main content and inline carousel scripts still live in each HTML file. The carousel spaniel behavior is duplicated inline across the six HTML pages. When changing its movement or sizing, update all six pages and verify both wide and compact viewport behavior.
+
+When a Codex review appears in the repo root, extract actionable items into `TODO.md`, then move the review into `Archive/`.
+
+Current visible byElie version: `v66.1`.
 
 ## Related Sites
 

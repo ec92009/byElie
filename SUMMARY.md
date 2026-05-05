@@ -96,3 +96,58 @@ Started from the byElie visual system and created a separate Photos By Elie stat
 - Existing byElie untracked folders remain intentionally untouched:
   - `.claude/`
   - `_src/`
+
+---
+
+# Conversation Summary
+
+Date: 2026-05-05
+
+## Scope
+
+- Reviewed newly generated Codex review files in `/Users/ecohen/Dev/byElie`.
+- Extracted actionable review feedback into `TODO.md` instead of leaving review documents as loose root files.
+- Archived review documents in `Archive/`.
+- Prioritized and completed the earlier 2026.05.02 review backlog.
+
+## Maintenance And Backlog Work
+
+- Created `TODO.md` as the repo backlog.
+- Archived `Codex.Review.2026.05.02.md`.
+- Added `scripts/site_maintenance.py --check` to validate visible versions, CSS cache-bust strings, basic SEO tags, canonical/OG URLs, skip-link consistency, and real-anchor card behavior.
+- Bumped byElie to `v66.0` for the first maintenance-check build.
+- Later completed the page-chrome backlog item by making `scripts/site_maintenance.py` own the shared head, topbar, footer, nav state, page metadata, canonical URLs, asset wiring, and version strings.
+- Regenerated all six HTML pages from that shared shell logic and bumped byElie to `v66.1`.
+- Added footers to service pages through the generated shell.
+- Updated `README.md` to document the maintenance script and shell ownership.
+
+## 2026.05.05 Review
+
+- Found `byElie Codex Review 2026-05-05.md` in the repo root.
+- Added actionable items to `TODO.md`:
+  - Replace the empty `mailto:` contact CTA.
+  - Extend static checks for local assets, empty links, sitemap/robots drift, canonical URLs, and version consistency.
+  - Add a compact mobile navigation treatment if small-screen header links crowd.
+  - Add a "Start here" path for uncertain visitors.
+  - Add mobile screenshot smoke checks for the header and carousel.
+  - Extract repeated SVG carousel companion markup out of the HTML pages.
+- Archived the review at `Archive/byElie Codex Review 2026-05-05.md`.
+
+## Verification And Publishing
+
+- Verified maintenance changes with `python3 scripts/site_maintenance.py --check`.
+- Verified Python syntax with `python3 -m py_compile scripts/site_maintenance.py`.
+- Served the site locally at `http://localhost:8000/` and smoke-checked home, plans, and web-design pages for `v66.1`, cache-busted CSS, active nav, and generated footer.
+- Pushed these commits:
+  - `b7b9545 byelie: prioritize review todo and add maintenance checks`
+  - `a04fe44 byelie: generate shared page shell`
+  - `05434c0 byelie: archive codex review backlog`
+
+## Current State
+
+- Current visible byElie version: `v66.1`.
+- Latest pushed commit before this summary refresh: `05434c0`.
+- Open backlog now comes from the 2026.05.05 review.
+- Unrelated local worktree items intentionally left untouched:
+  - deleted `2026.05.01_Claude_Review.md`
+  - untracked `.TODO.md.swp`
