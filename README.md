@@ -32,6 +32,12 @@ After editing site files, sync visible version strings:
 python3 scripts/site_maintenance.py --version "$(cat VERSION)"
 ```
 
+Validate visible versions, CSS cache-bust strings, basic SEO tags, skip links, and link-card markup:
+
+```sh
+python3 scripts/site_maintenance.py --check
+```
+
 To publish a new build, update `VERSION` to the next `vX.Y` value without the `v` prefix, then run the same command.
 
 GitHub Pages serves this repo from `main` at `/`. There is no `docs/` mirror; edit the root HTML/CSS files directly.
