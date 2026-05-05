@@ -26,13 +26,13 @@ No build step or package manager required.
 
 ## Maintenance
 
-After editing site files, sync visible version strings:
+After editing site files, sync the shared head, topbar, footer, asset wiring, and visible version strings:
 
 ```sh
 python3 scripts/site_maintenance.py --version "$(cat VERSION)"
 ```
 
-Validate visible versions, CSS cache-bust strings, basic SEO tags, skip links, and link-card markup:
+Validate the shared shell, visible versions, CSS cache-bust strings, basic SEO tags, skip links, and link-card markup:
 
 ```sh
 python3 scripts/site_maintenance.py --check
@@ -42,7 +42,7 @@ To publish a new build, update `VERSION` to the next `vX.Y` value without the `v
 
 GitHub Pages serves this repo from `main` at `/`. There is no `docs/` mirror; edit the root HTML/CSS files directly.
 
-The carousel spaniel behavior is duplicated inline across the six HTML pages. When changing its movement or sizing, update all six pages and verify both wide and compact viewport behavior.
+The page shell is owned by `scripts/site_maintenance.py`. Page-specific main content and inline carousel scripts still live in each HTML file. The carousel spaniel behavior is duplicated inline across the six HTML pages. When changing its movement or sizing, update all six pages and verify both wide and compact viewport behavior.
 
 ## Related Sites
 
