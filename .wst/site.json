@@ -1,0 +1,115 @@
+{
+  "manifest_version": "wst.site.v1",
+  "site_id": "byelie",
+  "name": "byElie",
+  "production_url": "https://ec92009.github.io/byElie/",
+  "ownership_verified": true,
+  "approval_status": "approved",
+  "beacon_verified": false,
+  "operational_state": "active",
+  "monitorability": {
+    "contract_version": "wst.monitorable.v1",
+    "owner_role": "Elie (site owner)",
+    "approval_ref": "WST-11: byElie aggregate pilot approved by Elie 2026-09-04",
+    "route_scope": ["/"],
+    "surfaces": [
+      {
+        "environment": "development",
+        "url": "http://localhost:8000/",
+        "version": "247.0",
+        "version_url": "http://localhost:8000/VERSION",
+        "note": "Configured local static preview; the server need not be running."
+      },
+      {
+        "environment": "preview",
+        "url": null,
+        "version": null,
+        "version_url": null,
+        "note": "No independently addressable preview exists; the GitHub Pages main branch is the production surface."
+      },
+      {
+        "environment": "production",
+        "url": "https://ec92009.github.io/byElie/",
+        "version": "247.0",
+        "version_url": "https://ec92009.github.io/byElie/VERSION",
+        "note": "Canonical GitHub Pages production surface; WST receipt is recorded privately after live verification."
+      }
+    ],
+    "capabilities": {
+      "browser_traffic": {
+        "state": "implemented",
+        "source": "WST sessionless aggregate homepage beacon",
+        "freshness_hours": 24,
+        "next_action": "Verify a live page-view receipt; sessionless events do not create Visits."
+      },
+      "edge_traffic": {
+        "state": "not_applicable",
+        "source": "GitHub Pages does not expose an owner edge aggregate source",
+        "freshness_hours": null,
+        "next_action": "Keep edge requests unavailable unless a provider aggregate source is added."
+      },
+      "cta": {
+        "state": "implemented",
+        "source": "Stable data-wst-cta attributes on the homepage",
+        "freshness_hours": 24,
+        "next_action": "Verify CTA receipts and preserve IDs when copy or layout changes."
+      },
+      "conversions": {
+        "state": "not_applicable",
+        "source": null,
+        "freshness_hours": null,
+        "next_action": "Report No receipt; email launches and navigation are not authoritative acceptance outcomes."
+      },
+      "health": {
+        "state": "implemented",
+        "source": "WST read-only HTTP health probe",
+        "freshness_hours": 24,
+        "next_action": "Repeat the safe GET check after releases."
+      },
+      "field_vitals": {
+        "state": "planned",
+        "source": null,
+        "freshness_hours": null,
+        "next_action": "Connect privacy-safe field vitals when sufficient samples exist, or retain insufficient-data status."
+      },
+      "lab_performance": {
+        "state": "planned",
+        "source": "Chrome DevTools",
+        "freshness_hours": 168,
+        "next_action": "Record trace receipts for the shared responsive matrix."
+      }
+    },
+    "cta_ids": [
+      "offers_overview",
+      "quote_primary",
+      "offer_plans",
+      "offer_prints",
+      "offer_gallery",
+      "offer_cad",
+      "offer_web_design",
+      "offer_photos",
+      "project_start",
+      "discovery_call",
+      "pricing_tiers"
+    ],
+    "conversion_receipts": [],
+    "privacy_profile": "wst.event.v1",
+    "consent_authority": "approved-cookieless",
+    "collector_url": "https://web-signals-collector.ec92009.workers.dev/v1/events",
+    "performance_profile": "wst.responsive-performance.v1",
+    "standards_status": "partial",
+    "disable_tracking": "Remove the WST beacon script or set data-wst-enabled to false; collection must stop without affecting navigation or the site.",
+    "exceptions": [
+      {
+        "requirement": "observed beacon readiness",
+        "reason": "The declaration is installed before WST has stored a live public receipt.",
+        "next_action": "Verify one production page_view and CTA receipt; keep synthetic checks out of business totals."
+      },
+      {
+        "requirement": "responsive and standards evidence",
+        "reason": "The existing inventory has source and live markup evidence but no current full interactive acceptance receipt.",
+        "next_action": "Run the full viewport, keyboard, reduced-motion, and performance matrix."
+      }
+    ]
+  }
+}
