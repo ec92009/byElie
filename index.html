@@ -21,8 +21,8 @@
       } catch {}
     })();
   </script>
-  <link rel="stylesheet" href="./shared.css?v=66.1"/>
-  <link rel="stylesheet" href="./styles.css?v=66.1"/>
+  <link rel="stylesheet" href="./shared.css?v=247.0"/>
+  <link rel="stylesheet" href="./styles.css?v=247.0"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
       <a href="./gallery.html">Gallery</a> <span>|</span>
       <a href="https://ec92009.github.io/PhotosByElie/">Photos By Elie</a>
     </nav>
-    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v66.1</div>
+    <div class="brand"><img class="site-logo" src="./assets/byelie-logo.png" alt="By Elie logo" />BY ELIE — v247.0</div>
     <button class="theme-toggle" type="button" data-theme-toggle><span class="mode-light">Night</span><span class="mode-dark">Day</span></button>
   </header>
   <main id="main-content" class="shell">
@@ -47,19 +47,19 @@
       <h1>Creation and engineering at your service</h1>
       <p class="lead">I blend hands-on building, CAD thinking, and AI-assisted systems (including ClawdBot workflows) to ship visual assets people can buy, print, and trust.</p>
       <div class="cta">
-        <a class="btn primary" href="#offers">See offers</a>
-        <a class="btn secondary" href="#contact">Request quote</a>
+        <a class="btn primary" href="#offers" data-wst-cta="offers_overview">See offers</a>
+        <a class="btn secondary" href="#contact" data-wst-cta="quote_primary">Request quote</a>
       </div>
     </section>
     <section id="offers" class="panel carousel" aria-label="Offerings carousel">
       <div class="carousel-wrap" data-offers-wrap tabindex="0">
         <div class="carousel-track" data-offers-track>
-          <a class="card carousel-item" data-offer-item href="./plans.html"><div class="service-logo" aria-hidden="true">01</div><h3>3D Print Plans</h3><p>Clean, tested STL/3MF releases built for real-world printers with practical tolerances and licensing ready for your shop.</p></a>
-          <a class="card carousel-item" data-offer-item href="./prints.html"><div class="service-logo" aria-hidden="true">02</div><h3>Printed Physical Items</h3><p>From one-off prototypes to small production runs, I print, finish, and quality-check every part before delivery.</p></a>
-          <a class="card carousel-item" data-offer-item href="./gallery.html"><div class="service-logo" aria-hidden="true">03</div><h3>Photo Services</h3><p>Marketplace-ready product photos with lighting, composition, and edits tuned for conversion instead of just aesthetics.</p></a>
-          <a class="card carousel-item" data-offer-item href="./cad-design.html"><div class="service-logo" aria-hidden="true">04</div><h3>CAD on demand</h3><p>Idea-to-file modeling with revision loops, printability checks, and exports your manufacturer or printer can use immediately.</p></a>
-          <a class="card carousel-item" data-offer-item href="./web-design.html"><div class="service-logo" aria-hidden="true">05</div><h3>Website Design & Maintenance</h3><p>Business websites that stay up-to-date with AI-assisted content operations and fast iteration as your offer evolves.</p></a>
-          <a class="card carousel-item" data-offer-item href="https://ec92009.github.io/PhotosByElie/"><div class="service-logo" aria-hidden="true">06</div><h3>Photos By Elie</h3><p>A dedicated photo hub for France, USA, Spain, and AI image collections with room for private delivery galleries.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_plans" href="./plans.html"><div class="service-logo" aria-hidden="true">01</div><h3>3D Print Plans</h3><p>Clean, tested STL/3MF releases built for real-world printers with practical tolerances and licensing ready for your shop.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_prints" href="./prints.html"><div class="service-logo" aria-hidden="true">02</div><h3>Printed Physical Items</h3><p>From one-off prototypes to small production runs, I print, finish, and quality-check every part before delivery.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_gallery" href="./gallery.html"><div class="service-logo" aria-hidden="true">03</div><h3>Photo Services</h3><p>Marketplace-ready product photos with lighting, composition, and edits tuned for conversion instead of just aesthetics.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_cad" href="./cad-design.html"><div class="service-logo" aria-hidden="true">04</div><h3>CAD on demand</h3><p>Idea-to-file modeling with revision loops, printability checks, and exports your manufacturer or printer can use immediately.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_web_design" href="./web-design.html"><div class="service-logo" aria-hidden="true">05</div><h3>Website Design & Maintenance</h3><p>Business websites that stay up-to-date with AI-assisted content operations and fast iteration as your offer evolves.</p></a>
+          <a class="card carousel-item" data-offer-item data-wst-cta="offer_photos" href="https://ec92009.github.io/PhotosByElie/"><div class="service-logo" aria-hidden="true">06</div><h3>Photos By Elie</h3><p>A dedicated photo hub for France, USA, Spain, and AI image collections with room for private delivery galleries.</p></a>
         </div>
         <div class="carousel-companion" data-spaniel data-state="sleeping" data-sleep-pose="false" aria-hidden="true">
           <svg class="spaniel-figure awake-pose" viewBox="0 0 1024 1024" role="presentation" focusable="false" aria-hidden="true">
@@ -169,19 +169,20 @@
         <div class="about-text">
           <p>I am Elie: builder, maker, and systems-minded operator focused on products that solve practical everyday problems.</p>
           <p>My workflow combines physical prototyping, CAD design, visual storytelling, and ClawdBot-powered process automation so projects move from concept to delivery without friction.</p>
-          <div class="cta"><a class="btn secondary" href="#contact">Start a project with Elie</a></div>
+          <div class="cta"><a class="btn secondary" href="#contact" data-wst-cta="project_start">Start a project with Elie</a></div>
         </div>
       </div>
     </section>
     <section class="panel" id="contact">
       <h2>Start your next build</h2>
       <p class="lead">Tell me your goal, timeline, and budget range. I will map the fastest path from idea to delivered files, prints, visuals, or live website updates.</p>
-      <div class="cta"><a class="btn primary" href="mailto:">Book a discovery call</a><a class="btn secondary" href="./plans.html">Request pricing tiers</a></div>
+      <div class="cta"><a class="btn primary" href="mailto:" data-wst-cta="discovery_call">Book a discovery call</a><a class="btn secondary" href="./plans.html" data-wst-cta="pricing_tiers">Request pricing tiers</a></div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="shell">
       <p class="footer-note">© 2026 By Elie &middot; Built to ship</p>
+      <p class="footer-note analytics-note">This homepage counts page views and marked button presses to improve the site. No names, email addresses, or form contents are collected.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="./">Home</a>
         <a href="./plans.html">3D Plans</a>
@@ -563,4 +564,5 @@
       metricEls.forEach((el)=>io.observe(el));
     }
   </script>
+  <script defer src="./assets/wst-beacon.js" data-wst-enabled="true" data-wst-endpoint="https://web-signals-collector.ec92009.workers.dev/v1/events" data-wst-site="byelie" data-wst-environment="production" data-wst-consent="not_required" data-wst-sessionless="true"></script>
 </body></html>

@@ -146,12 +146,15 @@ def render_topbar(page: str, version: str) -> str:
   </header>"""
 
 
-def render_footer() -> str:
+def render_footer(page: str) -> str:
     footer_links = "\n".join(f'        <a href="{href}">{label}</a>' for label, href in FOOTER_ITEMS)
+    analytics_note = ""
+    if page == "index.html":
+        analytics_note = '      <p class="footer-note analytics-note">This homepage counts page views and marked button presses to improve the site. No names, email addresses, or form contents are collected.</p>\n'
     return f"""  <footer class="site-footer">
     <div class="shell">
       <p class="footer-note">© 2026 By Elie &middot; Built to ship</p>
-      <nav class="footer-nav" aria-label="Footer navigation">
+{analytics_note}      <nav class="footer-nav" aria-label="Footer navigation">
 {footer_links}
       </nav>
     </div>
@@ -170,7 +173,7 @@ def render_document(page: str, text: str, version: str) -> str:
             render_head(page, version),
             render_topbar(page, version),
             main_html,
-            render_footer(),
+            render_footer(page),
             script_tail,
         )
     ) + "\n"

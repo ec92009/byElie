@@ -305,6 +305,7 @@ h2{margin:0 0 8px;font-size:clamp(1.25rem,2vw,1.8rem)}
   padding-bottom:clamp(14px,2.2dvh,24px);
 }
 .footer-note{font-size:.85rem;color:var(--muted);margin:0}
+.analytics-note{max-width:62ch}
 .site-footer{
   border-top:1px solid color-mix(in srgb,var(--line) 55%,transparent);
   padding:28px 0;

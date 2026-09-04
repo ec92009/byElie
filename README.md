@@ -15,6 +15,7 @@ Creator portfolio and service site for Elie — 3D print plans, physical prints,
 - `styles.css`: page-specific overrides and theme
 - `assets/`: logos and images
 - `VERSION`: visible site/cache-bust version source
+- `.wst/site.json`: public WST monitorability declaration for the homepage pilot
 - `TODO.md`: review-derived backlog and completion status
 - `Archive/`: archived review documents
 
@@ -25,6 +26,11 @@ No build step or package manager required.
 - Browser: plain HTML/CSS/JS
 - Local preview: `python3 -m http.server`
 - External assets: Google Fonts loaded at runtime
+
+## WST monitoring
+
+- The byElie homepage is the WST GitHub Pages guinea pig. It uses a cookieless, sessionless aggregate beacon for page views and marked CTA presses; Visits and conversions remain unavailable. The footer notice discloses the measurement, and previews or synthetic checks stay outside production totals.
+- The public monitorability declaration lives at `.wst/site.json`. It is an owner-approved declaration, not live proof; WST records beacon observations separately.
 
 ## Maintenance
 
@@ -48,7 +54,7 @@ The page shell is owned by `scripts/site_maintenance.py`. Page-specific main con
 
 When a Codex review appears in the repo root, extract actionable items into `TODO.md`, then move the review into `Archive/`.
 
-Current visible byElie version: `v66.1`.
+Current visible byElie version: `v247.0`.
 
 ## Related Sites
 
